@@ -1,1294 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithya Shree Raman Sujatha - Data Science Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1a365d;
-            --secondary: #2d3748;
-            --accent: #3182ce;
-            --dark: #0f172a;
-            --light-bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text: #2d3748;
-            --text-light: #718096;
-            --border: #e2e8f0;
-            --tech-gradient: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--light-bg);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .tech-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(26, 54, 93, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 60%, rgba(45, 55, 72, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 50% 80%, rgba(49, 130, 206, 0.05) 0%, transparent 20%);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 0.7rem 0;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.15);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        nav .logo i {
-            font-size: 1.3rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--tech-gradient);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--text);
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(26, 54, 93, 0.1) 0%, transparent 70%);
-            top: 10%;
-            right: 10%;
-            z-index: -1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(45, 55, 72, 0.1) 0%, transparent 70%);
-            bottom: 10%;
-            left: 10%;
-            z-index: -1;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            color: var(--dark);
-            background: var(--tech-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--tech-gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(26, 54, 93, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .social-links {
-            margin-top: 2rem;
-            animation: fadeInUp 1s ease 0.8s backwards;
-        }
-
-        .social-links a {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin: 0 15px;
-            transition: all 0.3s;
-            display: inline-block;
-            background: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(26, 54, 93, 0.2);
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px);
-            background: var(--tech-gradient);
-            color: white;
-            box-shadow: 0 8px 15px rgba(26, 54, 93, 0.3);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 80px 0;
-            background: var(--light-bg);
-            position: relative;
-        }
-
-        section:nth-child(even) {
-            background: white;
-        }
-
-        section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text);
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--tech-gradient);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Education */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-
-        .education-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--tech-gradient);
-        }
-
-        .education-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(26, 54, 93, 0.15);
-        }
-
-        .education-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-card .degree {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .education-card .gpa {
-            color: var(--secondary);
-            font-weight: 600;
-            margin: 0.5rem 0;
-        }
-
-        .education-card i {
-            color: var(--primary);
-            margin-right: 8px;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.1);
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.15);
-        }
-
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .skill-category li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .skill-category li:last-child {
-            border-bottom: none;
-        }
-
-        /* Experience */
-        .experience-timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            width: 2px;
-            background: var(--tech-gradient);
-        }
-
-        .experience-item {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.1);
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s;
-            position: relative;
-            margin-left: 50px;
-            border: 1px solid var(--border);
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary);
-            left: -60px;
-            top: 30px;
-            border: 4px solid white;
-            box-shadow: 0 0 0 3px var(--primary);
-        }
-
-        .experience-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.15);
-        }
-
-        .experience-item h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-item .company {
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
-        .experience-item .duration {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .experience-item ul {
-            margin-left: 20px;
-        }
-
-        .experience-item li {
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        .experience-item li::marker {
-            color: var(--accent);
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(26, 54, 93, 0.15);
-        }
-
-        .project-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--tech-gradient);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .project-card:hover .project-image::after {
-            opacity: 0.1;
-        }
-
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .project-card p {
-            flex-grow: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(26, 54, 93, 0.1);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: rgba(45, 55, 72, 0.1);
-        }
-
-        .project-link:hover {
-            color: var(--primary);
-            gap: 12px;
-            background: rgba(26, 54, 93, 0.1);
-        }
-
-        /* Extracurricular Activities */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .activity-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .activity-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(26, 54, 93, 0.15);
-        }
-
-        .activity-image {
-            height: 200px;
-            background-color: #f8fafc;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .activity-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .activity-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .activity-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .activity-card .role {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .activity-card .duration {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .activity-card p {
-            flex-grow: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contact */
-        .contact-info {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            background: var(--card-bg);
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.15);
-        }
-
-        .contact-item i {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .contact-item a, .contact-item span {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scroll to top button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--tech-gradient);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
-            z-index: 999;
-        }
-
-        .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .education-grid,
-            .skills-grid,
-            .projects-grid,
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .experience-timeline::before {
-                left: 15px;
-            }
-
-            .experience-item {
-                margin-left: 40px;
-            }
-
-            .experience-item::before {
-                left: -50px;
-            }
-
-            .project-links {
-                flex-direction: column;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nithya Shree Raman Sujatha | AI Engineer & Data Scientist</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+--primary:#1a365d;
+--secondary:#2d3748;
+--accent:#3182ce;
+--dark:#0f172a;
+--light-bg:#f7fafc;
+--card-bg:#ffffff;
+--text:#2d3748;
+--text-light:#718096;
+--border:#e2e8f0;
+--tech-gradient:linear-gradient(135deg,#1a365d 0%,#2d3748 100%);
+}
+
+body{
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height:1.6;
+color:var(--text);
+background:var(--light-bg);
+overflow-x:hidden;
+}
+
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+
+nav{
+background:white;
+padding:1rem 0;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+box-shadow:0 2px 15px rgba(0,0,0,0.05);
+}
+nav .container{display:flex;justify-content:space-between;align-items:center;}
+nav ul{display:flex;gap:2rem;list-style:none;}
+nav a{text-decoration:none;color:var(--text);font-weight:500;}
+nav a:hover{color:var(--primary);}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding-top:100px;
+}
+.hero h1{
+font-size:3rem;
+background:var(--tech-gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+.hero .subtitle{
+font-size:1.2rem;
+color:var(--text-light);
+margin:1rem 0 2rem 0;
+}
+
+.btn{
+padding:10px 25px;
+border-radius:25px;
+text-decoration:none;
+font-weight:600;
+margin:0 10px;
+}
+.btn-primary{background:var(--tech-gradient);color:white;}
+.btn-secondary{border:2px solid var(--primary);color:var(--primary);}
+.btn-secondary:hover{background:var(--primary);color:white;}
+
+section{padding:80px 0;}
+section h2{text-align:center;margin-bottom:40px;font-size:2.2rem;}
+
+.card{
+background:var(--card-bg);
+padding:2rem;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+border:1px solid var(--border);
+margin-bottom:2rem;
+}
+
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem;}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+
+ul{margin-left:20px;}
+footer{
+background:var(--dark);
+color:white;
+text-align:center;
+padding:2rem 0;
+margin-top:50px;
+}
+</style>
 </head>
+
 <body>
-    <!-- Background Elements -->
-    <div class="tech-bg"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="logo"><i class="fas fa-chart-line"></i> NS</div>
-            <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#activities">Extracurricular</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav>
+<div class="container">
+<strong>NS</strong>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Nithya Shree Raman Sujatha</h1>
-            <p class="tagline">Data Science Graduate Student</p>
-            <p class="subtitle">Transforming Data into Actionable Insights | MS in Data Science @ NJIT | GPA 4.0</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#projects" class="btn btn-secondary">View My Work</a>
-            </div>
-            <div class="social-links">
-                <a href="mailto:nith27raman@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/nithya-shree-raman-sujatha-610663240/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/nithyashreeraman" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-    </section>
+<section id="home" class="hero">
+<div>
+<h1>Nithya Shree Raman Sujatha</h1>
+<p class="subtitle">AI Engineer | Data Scientist | MS in Data Science @ NJIT (GPA 4.0)</p>
 
-    <!-- Education -->
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3>New Jersey Institute of Technology</h3>
-                    <p class="degree">MS in Data Science</p>
-                    <p class="gpa">GPA: 4.0/4.0</p>
-                    <p><i class="fas fa-calendar"></i> Sep 2024 – May 2026</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Newark, NJ</p>
-                </div>
-                <div class="education-card">
-                    <h3>Vellore Institute of Technology</h3>
-                    <p class="degree">BTech in Computer Science</p>
-                    <p class="gpa">GPA: 8.9/10</p>
-                    <p><i class="fas fa-calendar"></i> Sep 2020 – May 2024</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Vellore, India</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<a href="#projects" class="btn btn-primary">View Projects</a>
+<a href="#contact" class="btn btn-secondary">Contact Me</a>
 
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <h2>Tools & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Languages</h3>
-                    <ul>
-                        <li>Python (Pandas, NumPy, Matplotlib, Seaborn, SciPy, Plotly, Streamlit, Dash)</li>
-                        <li>Java, R, SQL</li>
-                        <li>HTML, CSS, PHP</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-chart-bar"></i> Data Analytics</h3>
-                    <ul>
-                        <li>Power BI (DAX, Power Query)</li>
-                        <li>Tableau, Microsoft Excel</li>
-                        <li>Web Scraping, Minitab</li>
-                        <li>A/B Testing, Power Automate</li>
-                        <li>ETL/ELT, Statistical Analysis</li>
-                        <li>Data Visualization, Data Storytelling</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
-                    <ul>
-                        <li>Hugging Face</li>
-                        <li>Scikit-learn, TensorFlow, PyTorch</li>
-                        <li>Large Language Models (LLMs), Predictive Modeling</li> 
-                        <li>Feature Engineering</li>
-                        <li>Model Evaluation</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Databases & Big Data</h3>
-                    <ul>
-                        <li>Snowflake, Hadoop, Apache Spark</li>
-                        <li>MongoDB (NoSQL), HBase</li>
-                        <li>MapReduce, AWS</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
-                    <ul>
-                        <li>Azure AI Fundamentals (Microsoft)</li>
-                        <li>Data Analytics (Google)</li>
-                        <li>Gen AI Fundamentals (Databricks)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<p style="margin-top:30px;">
+<a href="mailto:nr588@njit.edu">nr588@njit.edu</a> |
+<a href="https://github.com/nithyashreeraman" target="_blank">GitHub</a> |
+<a href="https://www.linkedin.com/in/nithya-shree-raman-sujatha-610663240/" target="_blank">LinkedIn</a>
+</p>
+</div>
+</section>
 
-    <!-- Experience -->
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <h3>Data Science Research Assistant</h3>
-                    <p class="company">Data Governance Group, NJIT | Newark, NJ</p>
-                    <p class="duration">Nov 2024 – Present</p>
-                    <ul>
-                        <li>Engineered scalable data pipelines aggregating information from multiple web sources and internal databases, implementing quality checks that improved data accuracy</li>
-                        <li>Developed an interactive dashboard with 5 tabs in Streamlit to visualize KPIs, enabling data-driven strategic planning for university leadership</li>
-                        <li>Automated and optimized ETL pipelines and Snowflake queries for 4 agencies, reducing data refresh times and improving system scalability</li>
-                </div>
-                <div class="experience-item">
-                    <h3>Data Science Intern</h3>
-                    <p class="company">PSEG | South Plainfield, NJ</p>
-                    <p class="duration">June 2025 – Aug 2025</p>
-                    <ul>
-                        <li>Designed and developed Power BI dashboard utilizing advanced DAX and hierarchical data models to visualize cash flow by WBS for 100+ projects, enhancing financial transparency for Project Management Office</li>
-                        <li>Modernized financial reporting workflows using Power BI and Excel VBA reducing manual errors</li>
-                        <li>Improved project closeout efficiency by retiring outdated WBS elements in SAP aligned with Primavera P6</li>
-                        
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h3>Data Analyst Intern</h3>
-                    <p class="company">AKIYAM Solutions Pvt Limited | India</p>
-                    <p class="duration">Jun 2023 – Dec 2023</p>
-                    <ul>
-                     <li>Boosted client acquisition through data-driven lead generation tools that enhanced outreach targeting precision</li> 
-                     <li>Formalized machine learning models to categorize clients into strategic segments that increased targeting efficiency</li> 
-                     <li>Advanced analytical depth using advanced trend analysis with Tableau and Python to generate business insights</li>
-            </div>
-        </div>
-    </section>
+<section id="education">
+<div class="container">
+<h2>Education</h2>
+<div class="grid-2">
 
-    <!-- Projects -->
+<div class="card">
+<h3>New Jersey Institute of Technology</h3>
+<p><strong>MS in Data Science</strong></p>
+<p>GPA: 4.0/4.0</p>
+<p>Sep 2024 – May 2026 | Newark, NJ</p>
+<p><strong>Activities:</strong> Secretary – Graduate Women in Computing Society, Secretary – GirlUp</p>
+</div>
+
+<div class="card">
+<h3>Vellore Institute of Technology</h3>
+<p><strong>B.Tech in Computer Science</strong></p>
+<p>GPA: 8.9/10</p>
+<p>Sep 2020 – May 2024 | India</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+<h2>Tools & Technologies</h2>
+<div class="grid-3">
+
+<div class="card">
+<h3>Languages</h3>
+<ul>
+<li>Python, R, Java, SQL</li>
+<li>HTML, CSS, PHP</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>ML & AI</h3>
+<ul>
+<li>Scikit-learn, XGBoost, PyTorch, TensorFlow</li>
+<li>Hugging Face, LangChain</li>
+<li>NLTK, spaCy</li>
+<li>LLMs: Gemini, LLaMA, Qwen</li>
+<li>RAG Pipelines</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Data Engineering & Cloud</h3>
+<ul>
+<li>Snowflake, PySpark, Hadoop</li>
+<li>PostgreSQL, MySQL, MongoDB, Supabase</li>
+<li>BeautifulSoup, Selenium</li>
+<li>AWS, Git</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Analytics & BI</h3>
+<ul>
+<li>EDA, A/B Testing, Statistical Analysis</li>
+<li>Power BI (DAX, Power Query)</li>
+<li>Tableau, Excel, Minitab</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Certifications</h3>
+<ul>
+<li>Azure AI Fundamentals (Microsoft)</li>
+<li>Google Data Analytics</li>
+<li>Databricks Gen AI Fundamentals</li>
+</ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="experience">
+<div class="container">
+<h2>Experience</h2>
+
+<div class="card">
+<h3>AI Engineer Intern – ConsumerIQ Inc</h3>
+<p>Jan 2026 – Present | New York, NY</p>
+<ul>
+<li>Architected dimensional data models (star schema) and built ETL pipelines integrating 4 data sources enabling real-time analytics.</li>
+<li>Engineered NLP-based fuzzy matching resolving 300K+ product records improving ML data quality.</li>
+<li>Resolved AWS Textract pipeline failures increasing training data coverage by 95%.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Data Science Intern – PSEG</h3>
+<p>June 2025 – Aug 2025 | NJ</p>
+<ul>
+<li>Built Power BI dashboards for WBS cash flow and surcharge analysis.</li>
+<li>Automated reporting accelerating forecasting cycles by 40%.</li>
+<li>Retired 100+ outdated SAP WBS elements improving financial alignment.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Data Science Research Assistant – NJIT</h3>
+<p>Nov 2024 – Present | Newark, NJ</p>
+<ul>
+<li>Designed scraping pipelines collecting 15K+ university records improving ranking data accuracy by 45%.</li>
+<li>Built LLM-powered AI assistant using Gemini + Hugging Face integrated into 5+ tab Streamlit dashboard.</li>
+<li>Optimized Snowflake ETL reducing processing latency by 40%.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Data Analyst Intern – AKIYAM Solutions</h3>
+<p>Jun 2023 – Dec 2023 | India</p>
+<ul>
+<li>Optimized SQL + Python lead generation increasing acquisition by 25%.</li>
+<li>Developed Tableau KPI dashboards reducing reporting time by 30%.</li>
+</ul>
+</div>
+
+</div>
+</section>
+
 <section id="projects">
-    <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                
-<div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
-    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="University Rankings Dashboard" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(./images/university-rankings-dashboard.jpg)'">
-</div>
-                <div class="project-content">
-                    <h3>University Rankings Dashboard</h3>
-                    <p>Created an interactive Streamlit dashboard to compare NJIT with other universities from multiple sources. Used Excel data, dynamic filters, and Plotly to visualize key metrics like research output and graduation rates.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">Excel</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://rankinguni.streamlit.app/" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+<h2>Featured Projects</h2>
 
-            <div class="project-card">
-    <div class="project-image" style="background-image: url('./images/ai-data-analysis-platform.jpg')">
-        <img src="./images/ai-data-analysis-platform.jpg" alt="AI-Powered Data Analysis Platform" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-    </div>
-    <div class="project-content">
-        <h3>AI-Powered Automated Data Analysis Platform</h3>
-        <p>Built full-stack Streamlit application automating data analysis workflow, reducing manual processing time. Integrated Google Gemini LLM for natural language insights and multiple interactive Plotly visualizations.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Google Gemini</span>
-            <span class="tech-tag">LLM</span>
-            <span class="tech-tag">Plotly</span>
-            <span class="tech-tag">ETL</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/AI-Powered-Automated-Data-Analysis-Platform" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-</div>
-<div class="project-card">
-    <div class="project-image" style="background-image: url('./images/app-store-analytics.jpg')">
-        <img src="./images/app-store-analytics.jpg" alt="App Store Analytics Dashboard" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-    </div>
-    <div class="project-content">
-        <h3>App Store Analytics Dashboard</h3>
-        <p>Built an interactive dashboard using Dash and Plotly to analyze app installs, revenue, and ratings. Included 3D plots and heatmaps to visualize market trends across categories and sizes.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Dash</span>
-            <span class="tech-tag">Plotly</span>
-            <span class="tech-tag">3D Visualization</span>
-            <span class="tech-tag">Heatmaps</span>
-            <span class="tech-tag">Data Analysis</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/App-Store-Analytics-Dashboard" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
+<div class="card">
+<h3>AI-Powered Automated Data Analysis Platform</h3>
+<ul>
+<li>Full-stack Streamlit app reducing manual processing by 60%.</li>
+<li>Integrated Gemini LLM with 5+ interactive Plotly visualizations.</li>
+</ul>
 </div>
 
-
-            <div class="project-card">
-                <div class="project-image" style="background-image: url('./images/football-analytics.jpg')">
-                    <img src="./images/football-analytics.jpg" alt="Football Analytics" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-                </div>
-                <div class="project-content">
-                    <h3>Role Of Data Analytics In Football</h3>
-                    <p>Developed a Flask-based web application to analyze football match data from the 2021–22 and 2022–23 seasons. Deployed an LSTM model that improved match outcome prediction accuracy.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">LSTM</span>
-                        <span class="tech-tag">Machine Learning</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/nithyashreeraman/Role-of-Data-analytics-in-Football" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image" style="background-image: url('./images/textum.jpg')">
-                    <img src="./images/textum.jpg" alt="Textum Project" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-                </div>
-                <div class="project-content">
-                    <h3>Textum</h3>
-                    <p>Built a high-performance text summarization solution using Hugging Face and Gradio, cutting reading time by 80%. Crafted an intuitive, user-friendly interface.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">Hugging Face</span>
-                        <span class="tech-tag">Gradio</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://huggingface.co/spaces/nith2701/Textum" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-          <div class="project-card">
-    <div class="project-image" style="background-image: url('./images/gorider.jpg')">
-    <img src="./images/gorider.jpg" alt="GoRider Project" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-</div>
-    <div class="project-content">
-        <h3>GoRider</h3>
-        <p>Performed in-depth analysis of the New York Bike system and visualized usage trends and economic impact using Tableau. Delivered a Flask-based front-end application.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Tableau</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Data Visualization</span>
-            <span class="tech-tag">Python</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/GoRider" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
+<div class="card">
+<h3>Role of Data Analytics in Football</h3>
+<ul>
+<li>Flask web app analyzing 2021–23 season data.</li>
+<li>LSTM model achieving 78% match prediction accuracy.</li>
+</ul>
 </div>
 
-            <div class="project-card">
-    <div class="project-image" style="background-image: url('./images/rule-based-recommendation.jpg')">
-        <img src="./images/rule-based-recommendation.jpg" alt="Rule-based Recommendation System" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-    </div>
-    <div class="project-content">
-        <h3>Rule-based Recommendation System</h3>
-        <p>Developed an intelligent recommendation engine using Prolog that applies logical rules and constraints to generate personalized suggestions based on user preferences and item attributes.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Prolog</span>
-            <span class="tech-tag">Logic Programming</span>
-            <span class="tech-tag">Rule-based Systems</span>
-            <span class="tech-tag">Recommendation Engine</span>
-            <span class="tech-tag">AI</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/Rule-based-Recommendation-System" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
+<div class="card">
+<h3>Textum – NLP Summarization Engine</h3>
+<ul>
+<li>Hugging Face Transformers with abstractive + extractive modes.</li>
+<li>Achieved 85% ROUGE accuracy.</li>
+<li>Reduced inference latency by 60% via quantization + caching.</li>
+</ul>
 </div>
 
-<!-- Quick Sprint AI -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('./images/quick-sprint-ai.jpg')">
-        <img src="./images/quick-sprint-ai.jpg" alt="Quick Sprint AI" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
-    </div>
-    <div class="project-content">
-        <h3>Quick Sprint AI</h3>
-        <p>AI-powered project management tool for creating to-do lists with intelligent suggestions. Built with modern web technologies to enhance productivity through AI-driven task recommendations and project organization.</p>
-        <div class="project-tech">
-            <span class="tech-tag">AI Integration</span>
-            <span class="tech-tag">Project Management</span>
-            <span class="tech-tag">Web Development</span>
-            <span class="tech-tag">Productivity</span>
-            <span class="tech-tag">Lovable AI</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/quick-sprint-ai" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
 </div>
-
-<!-- Vivid Sales Dashboard -->
-<div class="project-card">
-   <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sales Dashboard" style="display: none;" onerror="this.parentElement.style.backgroundImage = 'url(./images/sales-dashboard.jpg)'">
-        </div>   <div class="project-content">
-        <h3>Vivid Sales Dashboard</h3>
-        <p>Interactive and visually appealing Financial Statistics Dashboard developed in MS Excel delivers comprehensive insights into income sources, country-specific profits, sales process stages, and project workflow KPIs.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Excel</span>
-            <span class="tech-tag">Data Visualization</span>
-            <span class="tech-tag">Financial Analysis</span>
-            <span class="tech-tag">KPIs</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/nithyashreeraman/VIVID-SALES-DASHBOARD" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-</div>
-
 </section>
 
-<!-- Extracurricular Activities -->
-<section id="activities">
-    <div class="container">
-        <h2>Extracurricular Activities</h2>
-        <div class="activities-grid">
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/girlup.jpg" alt="Girl Up Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Girl_Up_Logo.png/320px-Girl_Up_Logo.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>Girl Up</h3>
-                    <p class="role">Secretary</p>
-                    <p class="duration">Aug 2025 – Present</p>
-                    <p>Empowering young women through education, leadership development, and advocacy initiatives.</p>
-                </div>
-            </div>
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/gwics.jpeg" alt="Graduate Women in Computing Society Logo" onerror="this.src='https://njit.edu/sites/all/themes/corporate2017/logo.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>Graduate Women in Computing Society</h3>
-                    <p class="role">Secretary</p>
-                    <p class="duration">Aug 2025 – Present</p>
-                    <p>Supporting women in computing fields through networking, mentorship, and professional development opportunities.</p>
-                </div>
-            </div>
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/njit.png" alt="Highlander H.O.U.S.E Logo" onerror="this.src='https://njit.edu/sites/all/themes/corporate2017/logo.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>Highlander H.O.U.S.E</h3>
-                    <p class="role">Volunteer</p>
-                    <p class="duration">Sep 2024 – Present</p>
-                    <p>Participated in community service activities and social outreach programs at NJIT.</p>
-                </div>
-            </div>
-
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/cfb.jpeg" alt="CFBNJ Logo" onerror="this.src='https://www.cfbnj.org/wp-content/uploads/2021/03/CFBNJ-Logo.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>CFBNJ Emerging Leaders</h3>
-                    <p class="role">Volunteer</p>
-                    <p class="duration">Jul 2025</p>
-                    <p>Contributed to community food bank initiatives and leadership development programs.</p>
-                </div>
-            </div>
-
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/ayuda.jpeg" alt="Ayuda NGO Logo" onerror="this.src='https://ayuda.org/wp-content/uploads/2021/03/Ayuda-Logo-Color.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>Ayuda NGO</h3>
-                    <p class="role">Design Team Member</p>
-                    <p class="duration">Jul 2021 – Jun 2023</p>
-                    <p>Created visual content and design materials for social awareness campaigns and fundraising events.</p>
-                </div>
-            </div>
-            
-            
-        
-            <div class="activity-card">
-                <div class="activity-image">
-                    <img src="./images/sunbeam.jpeg" alt="Sunbeam School Logo" onerror="this.src='https://sunbeamschools.com/wp-content/uploads/2021/03/Sunbeam-Logo.png'">
-                </div>
-                <div class="activity-content">
-                    <h3>Sunbeam CBSE & Matric Schools</h3>
-                    <p class="role">Adventure Club Secretary</p>
-                    <p class="duration">Jun 2016 - Apr 2017</p>
-                    <p>Organized adventure activities and outdoor learning experiences for students.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<section id="contact">
+<div class="container">
+<h2>Contact</h2>
+<div class="card" style="text-align:center;">
+<p>Email: <a href="mailto:nr588@njit.edu">nr588@njit.edu</a></p>
+<p>Phone: +1 551-235-2088</p>
+<p>
+<a href="https://github.com/nithyashreeraman" target="_blank">GitHub</a> |
+<a href="https://www.linkedin.com/in/nithya-shree-raman-sujatha-610663240/" target="_blank">LinkedIn</a>
+</p>
+</div>
+</div>
 </section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:nith27raman@gmail.com">nith27raman@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+1 551-235-2088</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/nithya-shree-raman-sujatha-610663240/" target="_blank">LinkedIn Profile</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/nithyashreeraman" target="_blank">GitHub Profile</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+<p>© 2026 Nithya Shree Raman Sujatha</p>
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nithya Shree Raman Sujatha. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Scroll to top button -->
-    <div class="scroll-to-top" id="scrollToTop">
-        <i class="fas fa-chevron-up"></i>
-    </div>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add active class to nav items on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Navbar scroll effect
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            // Scroll to top button
-            const scrollToTopBtn = document.getElementById('scrollToTop');
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
-
-        // Scroll to top functionality
-        document.getElementById('scrollToTop').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 </body>
-
 </html>
-
